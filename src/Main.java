@@ -7,10 +7,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-
         Pane root = new Pane();
-
         Scene scene = new Scene(root, 800, 800);
+
+        // Create intersection
+        Intersection intersection = new Intersection(root);
 
         stage.setTitle("Traffic Intersection");
         stage.setScene(scene);
