@@ -66,6 +66,9 @@ public class RoadIntersection extends JPanel {
                     case KeyEvent.VK_R:
                         addRandomCar();
                         break;
+                    case KeyEvent.VK_ESCAPE:
+                        System.exit(0);
+                        break;
                 }
             }
         });
@@ -98,7 +101,7 @@ public class RoadIntersection extends JPanel {
     }
 
     private boolean canSpawn(int x, int y) {
-        int safeZone = 60; 
+        int safeZone = 60;
         for (Car car : cars) {
             if (Math.abs(car.x - x) < safeZone && Math.abs(car.y - y) < safeZone) {
                 return false;
