@@ -1,23 +1,24 @@
-# Path to JavaFX libraries
-JAVA_FX_LIB=/usr/share/openjfx/lib
+# متغيرات المشروع
+JAVAC = javac
+JAVA = java
+SRC_DIR = .
+BIN_DIR = bin
+MAIN_CLASS = RoadIntersection
 
-# Folder to store compiled classes
-BUILD_DIR=build
+SOURCES = $(wildcard $(SRC_DIR)/*.java)
 
-# All Java files
-SRC=$(wildcard *.java)
+all: compile run
 
-# Default target: compile
-all:
-	mkdir -p $(BUILD_DIR)
-	javac --module-path $(JAVA_FX_LIB) --add-modules javafx.controls,javafx.graphics -d $(BUILD_DIR) $(SRC)
+compile:
+	@mkdir -p $(BIN_DIR)
+	$(JAVAC) -d $(BIN_DIR) $(SOURCES)
 
-# Run the program
 run:
-	java --module-path $(JAVA_FX_LIB) --add-modules javafx.controls,javafx.graphics -cp $(BUILD_DIR) Main
+	$(JAVA) -cp $(BIN_DIR) $(MAIN_CLASS)
 
-# Clean build folder
 clean:
-	rm -rf $(BUILD_DIR)
+	rm -rf $(BIN_DIR)
 
-	# ---> run it with make run and clean it with make clean
+rebuild: clean all
+
+.PHONY: all compile run clean rebuild
